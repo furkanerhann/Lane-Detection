@@ -514,8 +514,8 @@ class LaneDetection:
         return frame, way
 while True:
     ret, frame = cap.read()
-    frame = cv.resize(frame, (800, 600))
     if ret:
+        frame = cv.resize(frame, (800, 600))
         frame, way = LaneDetection.start_process(frame)
         cv.imshow('frame', frame)
         print(way)
