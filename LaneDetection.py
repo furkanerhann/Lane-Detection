@@ -405,22 +405,13 @@ class LaneDetection:
                     new_lines.append(line)
         return new_lines
     def separatelines(lines, center):
-        slopes = []
-        for line in lines:
-            x1, y1, x2, y2 = line[0]
-            if x2 - x1 == 0.:
-                slope = 999.
-            else:
-                slope = (y2 - y1) / (x2 - x1)
-            slopes.append(slope)
         right_lines = []
         left_lines = []
         for i, line in enumerate(lines):
             x1, y1, x2, y2 = line[0]
-
-            if slopes[i] > 0 and x1 > center and x2 > center:
+            if x1 > center and x2 > center:
                 right_lines.append(line)
-            elif slopes[i] < 0 and x1 < center and x2 < center:
+            elif x1 < center and x2 < center:
                 left_lines.append(line)
         return left_lines, right_lines
     def compresslines(lines):
