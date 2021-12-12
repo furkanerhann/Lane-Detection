@@ -393,7 +393,6 @@ class LaneDetection:
         return alpha
     def collectlines(mask):
         lines = cv.HoughLinesP(mask, 2, np.pi / 180, 20, np.array([]), minLineLength=25, maxLineGap=0)
-        slopes = []
         new_lines = []
         if lines is not None:
             for line in lines:
@@ -403,7 +402,6 @@ class LaneDetection:
                 else:
                     slope = (y2 - y1) / (x2 - x1)
                 if abs(slope) > 0.5:
-                    slopes.append(slope)
                     new_lines.append(line)
         return new_lines
     def separatelines(lines, center):
